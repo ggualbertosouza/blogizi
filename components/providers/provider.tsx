@@ -1,4 +1,4 @@
-import ConvexClientProvider from "@/components/providers/convex-provider";
+import {ConvexClerkProvider} from "@/components/providers/convex-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export const Provider = ({ children }: { children: React.ReactNode }) => {
@@ -10,9 +10,9 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
       enableSystem
       disableTransitionOnChange
       >
-      <ConvexClientProvider>
+      <ConvexClerkProvider>
         {children}
-      </ConvexClientProvider>
+      </ConvexClerkProvider>
       </ThemeProvider>
     </>
   );
