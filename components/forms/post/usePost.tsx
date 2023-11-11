@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 // Convex | sonner
-import {useMutation} from 'convex/react'
+import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import {toast} from 'sonner'
+import { toast } from "sonner";
 
 export const usePost = () => {
-  const create = useMutation(api.posts.create)
+  const create = useMutation(api.posts.create);
 
   const {
     register,
@@ -23,20 +23,23 @@ export const usePost = () => {
   });
 
   const handlePost = (data: schemaProps) => {
-      const promise = create({
-        title: data.title,
-        slug: data.slug,
-        category: data.category,
-        content: data.content,
-      })
+    const today = `${new Date()}`
 
-      toast.promise(promise, {
-        loading: 'Creating a new post...',
-        success: 'Posted!',
-        error: 'Failed to post.'
-      })
-      
-      reset();
+    const promise = create({
+      title: data.title,
+      slug: data.slug,
+      description: data.description,
+      content: data.content,
+      date: today
+    });
+
+    toast.promise(promise, {
+      loading: "Creating a new post...",
+      success: "Posted!",
+      error: "Failed to post.",
+    });
+
+    reset();
   };
 
   return {

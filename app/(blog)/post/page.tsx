@@ -1,11 +1,12 @@
 'use client'
+import { Spinner } from "@/components/ui/spinner"
 import { api } from "@/convex/_generated/api"
-import { useQuery } from "convex/react"
-import { useParams, useRouter } from "next/navigation"
+import { useConvexAuth, useQuery } from "convex/react"
+import { useRouter } from "next/navigation"
 
 const PostsPage = () => {
+    const { isLoading, isAuthenticated} = useConvexAuth()
     const router = useRouter()
-    const params = useParams()
     const getPosts = useQuery(api.posts.get)
 
 
@@ -13,6 +14,18 @@ const PostsPage = () => {
         router.push(`/post/${id}`)
     }
 
+    if(isLoading){
+        return(
+            <div className="flex items-center justify-center">
+                <Spinner size='xl'/>
+            </div>
+        )
+    }
+
+    if(!isAuthenticated){
+        return router.push('/')
+    }
+    
     return(
         <>
             {getPosts?.map((post) => (
