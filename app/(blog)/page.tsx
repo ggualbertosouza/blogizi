@@ -20,6 +20,7 @@ const HomePage = () => {
   const csharpPost = useQuery(api.posts.getCsharpPost);
 
   const mostRecent = recentPost?.slice(0, 1)
+
   return (
     <section className="flex flex-col my-6 w-full">
       <div className="space-y-6 text-center">
