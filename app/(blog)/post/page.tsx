@@ -1,4 +1,6 @@
 'use client'
+import { CardPost } from "@/app/(blog)/_components/cardPost"
+import { SmallPost } from "@/app/(blog)/_components/smallPost"
 import { Spinner } from "@/components/ui/spinner"
 import { api } from "@/convex/_generated/api"
 import { useConvexAuth, useQuery } from "convex/react"
@@ -16,7 +18,7 @@ const PostsPage = () => {
 
     if(isLoading){
         return(
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center h-full">
                 <Spinner size='xl'/>
             </div>
         )
@@ -27,20 +29,21 @@ const PostsPage = () => {
     }
     
     return(
-        <>
+        <section className="h-full w-full flex flex-wrap gap-12">
             {getPosts?.map((post) => (
-                <div 
-                key={post._id}
-                onClick={() => onClick(post._id)}
-                className="w-64 border p-2 cursor-pointer"
-                >
-                    <h2>
-                    {post.title}
-                    </h2>
-                    <p>{post.slug}</p>
-                </div>
+            <div 
+            key={post._id}
+            className='cursor-pointer border rounded'
+            onClick={() => router.push(`/post/${post._id}`)}
+            >
+                <CardPost 
+                title={post.title}
+                slug={post.slug}
+                description={post.description}
+                />
+            </div>
             ))}
-        </>
+        </section>
     )
 }
 

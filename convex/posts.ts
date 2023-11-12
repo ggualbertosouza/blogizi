@@ -39,7 +39,7 @@ export const getBestPost = query({
     const posts = await ctx.db
       .query("posts")
       .withIndex('by_creation_time')
-      .take(1)
+      .take(3)
 
       return posts
   },
@@ -54,4 +54,16 @@ export const getCsharpPost = query({
 
     return posts
   }
+})
+
+export const getById = query({
+  args: {id: v.id('posts')},
+  handler: async (ctx, args) => {
+      const post = ctx.db
+      .query('posts')
+      .filter((q) => q.eq(q.field('_id'), args.id))
+      .collect()
+
+      return post
+  },
 })
