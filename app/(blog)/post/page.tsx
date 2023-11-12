@@ -11,11 +11,6 @@ const PostsPage = () => {
     const router = useRouter()
     const getPosts = useQuery(api.posts.get)
 
-
-    const onClick = (id: string) => {
-        router.push(`/post/${id}`)
-    }
-
     if(isLoading){
         return(
             <div className="flex items-center justify-center h-full">

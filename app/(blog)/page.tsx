@@ -11,7 +11,7 @@ import { Spinner } from "@/components/ui/spinner";
 // Convex
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 const HomePage = () => {
@@ -20,6 +20,7 @@ const HomePage = () => {
   const csharpPost = useQuery(api.posts.getCsharpPost);
 
   const mostRecent = recentPost?.slice(0, 1)
+  const recents = recentPost?.slice(1,3)
 
   return (
     <section className="flex flex-col my-6 w-full">
@@ -27,6 +28,18 @@ const HomePage = () => {
         <Separator />
         <h1 className="text-8xl font-bold">The Blog</h1>
         <Separator />
+      </div>
+      <div className="relative bg-primary py-6 my-2">
+        <h3 className="text-2xl text-center text-white">Guilherme Gualberto Souza</h3>
+        <div className="absolute right-2 bottom-2 flex items-center gap-3 text-white">
+          <p>Follow me:</p> 
+          <Link href='https://github.com/ggualbertosouza'>
+          <Github className=""/>
+          </Link>
+          <Link href='https://www.linkedin.com/in/guilhermegsz'>
+          <Linkedin />
+          </Link>
+        </div>
       </div>
       <div className="flex flex-col md:flex-row gap-4 my-6">
         <div className="w-full md:w-1/2">
@@ -45,9 +58,9 @@ const HomePage = () => {
             <Spinner />
           )}
         </div>
-        <div className="w-full md:w-1/2 flex flex-col gap-4">
-          {allPosts ? (
-            allPosts?.map((post) => (
+        <div className="w-full md:w-1/2  flex flex-col gap-4">
+          {recents ? (
+            recents?.map((post) => (
               <SmallPost
                 id={post._id}
                 key={post._id}

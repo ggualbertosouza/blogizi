@@ -20,7 +20,6 @@ export const schema = z.object({
   description: z
     .string()
     .min(5, "Sua Descrição precisa ter no mínimo 5 caracteres."),
-  content: z.string().min(15, "Seu texto precisa ter mais de 15 caracteres."),
 });
 
 export type schemaProps = z.infer<typeof schema>;

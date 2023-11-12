@@ -10,12 +10,11 @@ export const SmallPost = ({ description, title, date, slug, id }: postProps) => 
     onClick={() => router.push(`/post/${id}`)}
 
     className="flex flex-col md:flex-row gap-2 cursor-pointer">
-      <div className="relative w-full md:w-64 h-48">
+      <div className="relative w-64 h-48">
         <Image
           src="/Image.png"
           fill
           alt="blog image"
-          className="object-cover"
         />
       </div>
       <div className="flex flex-col gap-2 w-fit">

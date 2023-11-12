@@ -56,6 +56,17 @@ export const getCsharpPost = query({
   }
 })
 
+export const getByCategory = query({
+  args: {slug: v.string()},
+  handler: async(ctx, args) => {
+      const posts = await ctx.db
+      .query('posts')
+      .withIndex('by_category', (q) => q.eq('slug', args.slug))
+
+      return posts
+    }
+})
+
 export const getById = query({
   args: {id: v.id('posts')},
   handler: async (ctx, args) => {

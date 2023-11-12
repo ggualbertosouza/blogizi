@@ -1,5 +1,6 @@
 "use client";
 
+import { NoteEditor } from "@/components/editor/noteEditor";
 import { usePost } from "@/components/forms/post/usePost";
 
 // Components
@@ -50,11 +51,7 @@ export const PostForm = () => {
         </div>
         <div>
           <Label className="text-xl font-bold">Conteúdo:</Label>
-          <Textarea
-            {...register("content")}
-            error={errors?.content?.message}
-            disabled={isSubmitting}
-          />
+          <NoteEditor />
         </div>
         <Button
           type="submit"

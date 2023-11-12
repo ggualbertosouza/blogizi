@@ -18,9 +18,9 @@ const SpecificPostPage = () => {
       <Separator />
       {getPost ? getPost?.map((post) => (
         <div className="my-6 flex flex-col gap-3" key={post._id}>
-          <h2 className="text-4xl font-bold">{post.title}</h2>
+          <h2 className="text-4xl font-bold text-center">{post.title}</h2>
           <div className="py-1 px-2 bg-primary/20 w-fit rounded-full text-primary text-sm">{post.slug}</div>
-          <p className="italic text-muted-foreground">{post.content}</p>
+          <p className="italic" dangerouslySetInnerHTML={{__html: post.content}}></p>
         </div>
       )) : <Spinner />}
     </section>

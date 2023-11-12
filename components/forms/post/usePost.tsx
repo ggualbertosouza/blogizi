@@ -23,15 +23,22 @@ export const usePost = () => {
   });
 
   const handlePost = (data: schemaProps) => {
-
+    // data
     const date = new Date()
     const today = Intl.DateTimeFormat('pt-br').format(date)
+
+    // Content
+    const editorContent = localStorage.getItem('tiptap')
+
+    if(!editorContent){
+      throw new Error('Campo vazio.')
+    }
 
     const promise = create({
       title: data.title,
       slug: `${data.slug}`,
       description: data.description,
-      content: data.content,
+      content: editorContent,
       date: today
     });
 
@@ -41,6 +48,7 @@ export const usePost = () => {
       error: "Failed to post.",
     });
 
+    localStorage.clear()
     reset();
   };
 
