@@ -23,11 +23,13 @@ export const usePost = () => {
   });
 
   const handlePost = (data: schemaProps) => {
-    const today = `${new Date()}`
+
+    const date = new Date()
+    const today = Intl.DateTimeFormat('pt-br').format(date)
 
     const promise = create({
       title: data.title,
-      slug: data.slug,
+      slug: `${data.slug}`,
       description: data.description,
       content: data.content,
       date: today

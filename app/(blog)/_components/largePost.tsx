@@ -2,13 +2,13 @@
 import { postProps } from "@/types/postProps";
 import Image from "next/image";
 
-export const HalfPost = ({ description, title, date, slug }: postProps) => {
+export const LargePost = ({ description, title, date, slug }: postProps) => {
   return (
-    <section className="flex flex-col gap-4">
-      <div className="relative w-full h-64">
+    <section className="flex flex-col md:flex-row gap-4">
+      <div className="relative w-full md:w-1/2 h-64">
         <Image src="/Image.png" alt="blog image" fill />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 w-full md:w-1/2">
         <small className="text-primary text-sm">{date}</small>
         <h2 className="font-bold text-xl">{title}</h2>
         <p className="italic text-muted-foreground">{description}</p>

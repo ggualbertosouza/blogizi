@@ -34,15 +34,24 @@ export const get = query({
   },
 });
 
-export const getPostByCategory = query({
-  args: {
-    slug: v.string(),
-  },
-
-  handler: async (ctx, args) => {
+export const getBestPost = query({
+  handler: async (ctx) => {
     const posts = await ctx.db
       .query("posts")
-      .withIndex("by_category", (q) => q.eq("slug", args.slug))
-      .collect();
+      .withIndex('by_creation_time')
+      .take(1)
+
+      return posts
   },
 });
+
+export const getCsharpPost = query({
+  handler: async (ctx) => {
+    const posts = await ctx.db
+    .query('posts')
+    .withIndex('by_category')
+    .take(1)
+
+    return posts
+  }
+})
